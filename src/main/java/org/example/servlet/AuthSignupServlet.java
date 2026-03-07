@@ -1,0 +1,58 @@
+package org.example.servlet;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.example.dto.AuthResponse;
+import org.example.dto.CreateCustomerRequest;
+import org.example.model.Customer;
+import org.example.repository.CustomerRepository;
+import org.example.util.JsonUtil;
+import org.example.util.PasswordUtil;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+@WebServlet("/auth/signup")
+public class AuthSignupServlet extends BaseServlet {
+    private final CustomerRepository customerRepository = new CustomerRepository();
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        CreateCustomerRequest body = JsonUtil.readBody(req, CreateCustomerRequest.class);
+        String name = valueOrEmpty(body.getName());
+        String phone = valueOrEmpty(body.getPhone());
+        String licenseNumber = valueOrEmpty(body.getLicenseNumber());
+        String email = valueOrEmpty(body.getEmail()).toLowerCase();
+        String password = valueOrEmpty(body.getPassword());
+
+        if (name.isBlank() || phone.isBlank() || licenseNumber.isBlank() || email.isBlank() || password.isBlank()) {
+            writeError(resp, 400, "name, phone, licenseNumber, email, and password are required");
+            return;
+        }
+
+        try {
+            if (customerRepository.existsByEmail(email)) {
+                writeError(resp, 409, "email already exists");
+                return;
+            }
+
+            Customer customer = new Customer();
+            customer.setName(name);
+            customer.setPhone(phone);
+            customer.setLicenseNumber(licenseNumber);
+            customer.setEmail(email);
+            customer.setPasswordHash(PasswordUtil.sha256(password));
+            customer.setRole("user");
+
+            long id = customerRepository.create(customer);
+            JsonUtil.write(resp, 201, new AuthResponse(id, name, email, "user"));
+        } catch (SQLException ex) {
+            writeError(resp, 500, "failed to create user: " + ex.getMessage());
+        }
+    }
+
+    private String valueOrEmpty(String value) {
+        return value == null ? "" : value.trim();
+    }
+}

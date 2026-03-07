@@ -1,0 +1,354 @@
+:root {
+    --bg: #0a0a0a;
+    --bg-soft: #111111;
+    --surface: #161616;
+    --surface-alt: #1d1d1d;
+    --text: #f3f1eb;
+    --muted: #b3aa95;
+    --gold: #cba869;
+    --gold-soft: #9d8350;
+    --border: rgba(203, 168, 105, 0.25);
+    --ok: #8ac88f;
+    --danger: #d58f8f;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+    background: radial-gradient(circle at top right, #242017 0%, var(--bg) 42%), var(--bg);
+    color: var(--text);
+    min-height: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.page {
+    min-height: 100vh;
+    padding: 24px;
+}
+
+.shell {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.glow-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(203, 168, 105, 0.6), transparent);
+    margin: 20px 0;
+}
+
+.brand-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-logo {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(203, 168, 105, 0.25));
+}
+
+.panel {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    backdrop-filter: blur(8px);
+}
+
+.auth-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+    margin-top: 28px;
+}
+
+.hero {
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: clamp(28px, 3.3vw, 46px);
+    margin: 0 0 12px;
+    letter-spacing: 0.5px;
+}
+
+.hero p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -140px -140px auto;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(203, 168, 105, 0.15), transparent 70%);
+}
+
+.auth-card {
+    padding: 28px;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.auth-tab {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.28s ease;
+}
+
+.auth-tab.active {
+    color: var(--bg);
+    background: linear-gradient(135deg, #ddc38f, var(--gold));
+}
+
+.form {
+    display: grid;
+    gap: 12px;
+}
+
+label {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+input, select {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(203, 168, 105, 0.2);
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+input:focus, select:focus {
+    border-color: rgba(203, 168, 105, 0.65);
+    transform: translateY(-1px);
+}
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.18s ease, filter 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ddc38f, var(--gold));
+    color: #1b1b1b;
+}
+
+.btn-secondary {
+    background: #252525;
+    color: var(--muted);
+    border: 1px solid var(--border);
+}
+
+.note {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.status {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+.status.ok {
+    display: block;
+    background: rgba(138, 200, 143, 0.1);
+    border: 1px solid rgba(138, 200, 143, 0.4);
+    color: var(--ok);
+}
+
+.status.error {
+    display: block;
+    background: rgba(213, 143, 143, 0.1);
+    border: 1px solid rgba(213, 143, 143, 0.4);
+    color: var(--danger);
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+}
+
+.badge {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 7px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+.grid {
+    display: grid;
+    gap: 18px;
+}
+
+.grid.two-col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid.cars {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card {
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    animation: riseIn 0.6s ease both;
+}
+
+.pad {
+    padding: 20px;
+}
+
+.car-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.car-title {
+    margin: 0;
+    font-size: 18px;
+}
+
+.car-meta {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 6px 0 12px;
+}
+
+.kpi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+.kpi .card h3 {
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.kpi .card p {
+    margin: 7px 0 0;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.section-title {
+    margin: 20px 0 12px;
+    font-size: 22px;
+}
+
+.section-title-sm {
+    margin: 0 0 14px;
+    font-size: 19px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid rgba(203, 168, 105, 0.16);
+    color: var(--muted);
+}
+
+.table th {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.fade-up {
+    animation: riseIn 0.7s ease both;
+}
+
+@keyframes riseIn {
+    from {
+        transform: translateY(16px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 920px) {
+    .auth-grid,
+    .grid.two-col {
+        grid-template-columns: 1fr;
+    }
+    .brand-logo {
+        width: 150px;
+    }
+}
+
+body.light-mode {
+    --bg: #f5f5f5;
+    --bg-soft: #ffffff;
+    --surface: #ffffff;
+    --surface-alt: #f0f0f0;
+    --text: #222222;
+    --muted: #666666;
+    --border: rgba(0,0,0,0.15);
+}
+body.light-mode html,
+body.light-mode body {
+    background: #f5f5f5;
+}
+#themeToggle {
+    font-size: 18px;
+    padding: 10px 14px;
+}

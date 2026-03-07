@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LETMEDRIVE | Login</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<main class="page">
+    <div class="shell">
+        <div class="brand-row fade-up">
+            <img src="assets/images/logo.png" alt="LetMeDrive" class="brand-logo" />
+            <span class="badge">Premium Fleet Experience</span>
+        </div>
+
+        <div class="glow-line"></div>
+
+        <section class="auth-grid">
+            <article class="panel hero fade-up">
+                <h1>Rent Premium Cars with Precision</h1>
+                <p>
+                    Welcome to LETMEDRIVE. Log in to access your dashboard or sign up as a new customer.
+                    Admin and user routes are separated automatically by credentials.
+                </p>
+                <div class="glow-line"></div>
+            </article>
+
+            <article class="panel auth-card fade-up">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="loginTab" type="button">Login</button>
+                    <button class="auth-tab" id="signupTab" type="button">Sign Up</button>
+                </div>
+
+                <form id="loginForm" class="form">
+                    <div>
+                        <label for="loginEmail">Email</label>
+                        <input id="loginEmail" type="email" placeholder="you@example.com" required />
+                    </div>
+                    <div>
+                        <label for="loginPassword">Password</label>
+                        <input id="loginPassword" type="password" placeholder="Enter password" required />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Continue</button>
+                </form>
+
+                <form id="signupForm" class="form" style="display:none;">
+                    <div>
+                        <label for="signupName">Full Name</label>
+                        <input id="signupName" type="text" placeholder="Customer name" required />
+                    </div>
+                    <div>
+                        <label for="signupPhone">Phone</label>
+                        <input id="signupPhone" type="text" placeholder="10-digit phone" required />
+                    </div>
+                    <div>
+                        <label for="signupLicense">License Number</label>
+                        <input id="signupLicense" type="text" placeholder="DL-12345" required />
+                    </div>
+                    <div>
+                        <label for="signupEmail">Email</label>
+                        <input id="signupEmail" type="email" placeholder="you@example.com" required />
+                    </div>
+                    <div>
+                        <label for="signupPassword">Password</label>
+                        <input id="signupPassword" type="password" placeholder="Create password" required />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Create Account</button>
+                </form>
+
+                <div id="authStatus" class="status"></div>
+            </article>
+        </section>
+    </div>
+</main>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
